@@ -18,7 +18,7 @@ import java.util.List;
 public class Image2PdfUtils {
     static final Logger log = Logger.getLogger(Image2PdfUtils.class);
 
-    public static void convertImage2Pdf(String filePath) {
+    public void convertImage2Pdf(String filePath) {
         String target = makeImageDirectory() + "\\" +filePath;
         String source = makeImage2PdfDirectory() + "\\" + filePath.substring(0,filePath.lastIndexOf("."))+".pdf";
         Document document = new Document();
@@ -56,7 +56,7 @@ public class Image2PdfUtils {
         }
     }
 
-    public static String makeImageDirectory() {
+    public String makeImageDirectory() {
         log.info("开始创建-D:/imageDirectory");
         File file = new File("D:/imageDirectory");
         if (!file.exists()) {
@@ -66,7 +66,7 @@ public class Image2PdfUtils {
         return file.getAbsolutePath();
     }
 
-    public static String makeImage2PdfDirectory() {
+    public String makeImage2PdfDirectory() {
         log.info("开始创建-D:/image2PdfDirectory");
         File file = new File("D:/image2PdfDirectory");
         if (!file.exists()) {
@@ -76,7 +76,7 @@ public class Image2PdfUtils {
         return file.getAbsolutePath();
     }
 
-    public static void makeImge2Pdf() {
+    public void makeImge2Pdf() {
         java.util.List<String> fileNameList = new ArrayList<String>();
         File file = new File(makeImageDirectory());
         java.util.List<String> fileList = getAllFiles(file, fileNameList);
@@ -91,7 +91,7 @@ public class Image2PdfUtils {
         }
     }
 
-    public static List getAllFiles(File file, List<String> fileNameList) {
+    public List getAllFiles(File file, List<String> fileNameList) {
         File[] files = file.listFiles();
         if (files.length <= 0) {
             throw new RuntimeException("文件夹下不存在文件，请核实！！！");

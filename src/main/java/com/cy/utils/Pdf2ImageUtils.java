@@ -33,7 +33,7 @@ public class Pdf2ImageUtils {
      * @author shenjianhu:
      * @version 创建时间：2016年11月16日 下午8:21:29
      */
-    public static int pdf2Image(String pdffile){
+    public int pdf2Image(String pdffile){
         //传入文件名称
         File file = new File(pdffile);
         String fileName = pdffile.substring(pdffile.lastIndexOf("\\") + 1, pdffile.lastIndexOf("."));
@@ -90,7 +90,7 @@ public class Pdf2ImageUtils {
      * @author shenjianhu:
      * @version 创建时间：2016年12月19日 上午11:25:22
      */
-    public static <T> void unmap(final Object buffer) {
+    public <T> void unmap(final Object buffer) {
         AccessController.doPrivileged(new PrivilegedAction<T>() {
             @Override
             public T run() {
@@ -107,7 +107,7 @@ public class Pdf2ImageUtils {
         });
     }
 
-    public static String makePdfMetadataDirectory() {
+    public String makePdfMetadataDirectory() {
         log.info("开始创建-D:/pdfMetadataDirectory");
         File file = new File("D:/pdfMetadataDirectory");
         if (!file.exists()) {
@@ -117,7 +117,7 @@ public class Pdf2ImageUtils {
         return file.getAbsolutePath();
     }
 
-    public static String makePdf2ImageDirectory() {
+    public String makePdf2ImageDirectory() {
         log.info("开始创建-D:/pdf2ImageDirectory");
         File file = new File("D:/pdf2ImageDirectory");
         if (!file.exists()) {
@@ -127,7 +127,7 @@ public class Pdf2ImageUtils {
         return file.getAbsolutePath();
     }
 
-    public static void makePdf2Image() {
+    public void makePdf2Image() {
         java.util.List<String> fileNameList = new ArrayList<String>();
         File file = new File(makePdfMetadataDirectory());
         java.util.List<String> fileList = getAllFiles(file, fileNameList);
@@ -142,7 +142,7 @@ public class Pdf2ImageUtils {
         }
     }
 
-    public static List getAllFiles(File file, List<String> fileNameList) {
+    public List getAllFiles(File file, List<String> fileNameList) {
         File[] files = file.listFiles();
         if (files.length <= 0) {
             throw new RuntimeException("文件夹下不存在文件，请核实！！！");

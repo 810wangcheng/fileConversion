@@ -41,7 +41,7 @@ public class Office2PdfUtil {
     /**
      * TODO 文件转换
      */
-    public static Integer formatConvert(String filePath) {
+    public Integer formatConvert(String filePath) {
         log.info("开始处理" + filePath);
         Integer pages = 0;
         String resource = makeOffice2PdfDirectory() + "\\" + filePath.substring(filePath.lastIndexOf("\\") + 1, filePath.lastIndexOf("."));
@@ -83,7 +83,7 @@ public class Office2PdfUtil {
      * @author shenjianhu:
      * @version 创建时间：2017年4月18日 下午3:08:11
      */
-    public static Integer ppt2Image(String pptfile, String imgfile) {
+    public Integer ppt2Image(String pptfile, String imgfile) {
         String imageDir = pptfile.substring(0, pptfile.lastIndexOf("."));
         File dir = new File(imageDir);
         if (!dir.exists()) {
@@ -123,7 +123,7 @@ public class Office2PdfUtil {
      * @param docfile  WORD文件全路??
      * @param htmlfile 转换后HTML存放路径
      */
-    public static void wordToHtml(String docfile, String htmlfile) {
+    public void wordToHtml(String docfile, String htmlfile) {
         // 启动word应用程序(Microsoft Office Word 2003)
         ActiveXComponent app = null;
         log.info("*****正在转换...*****");
@@ -159,7 +159,7 @@ public class Office2PdfUtil {
         log.info("*****转换完毕********");
     }
 
-    public static void word2pdf(String docFile, String pdfFile) {
+    public void word2pdf(String docFile, String pdfFile) {
         // 启动word应用程序(Microsoft Office Word 2003)
         ActiveXComponent app = null;
         try {
@@ -203,7 +203,7 @@ public class Office2PdfUtil {
         log.info("*****转换完毕********");
     }
 
-    public static void ppt2pdf(String pptfile, String pdffile) {
+    public void ppt2pdf(String pptfile, String pdffile) {
         log.debug("打开ppt应用");
         ActiveXComponent app = null;
         log.debug("设置可见性");
@@ -230,7 +230,7 @@ public class Office2PdfUtil {
         }
     }
 
-    public static void excel2pdf(String excelfile, String pdffile) {
+    public void excel2pdf(String excelfile, String pdffile) {
         ActiveXComponent app = null;
         try {
             ComThread.InitSTA(true);
@@ -266,7 +266,7 @@ public class Office2PdfUtil {
         }
     }
 
-    public static void ppt2html(String pptfile, String htmlfile) {
+    public void ppt2html(String pptfile, String htmlfile) {
         ActiveXComponent app = null;
         try {
             ComThread.InitSTA(true);
@@ -291,7 +291,7 @@ public class Office2PdfUtil {
         }
     }
 
-    public static String makeOfficeDirectory() {
+    public String makeOfficeDirectory() {
         log.info("开始创建-D:/officeDirectory");
         File file = new File("D:/officeDirectory");
         if (!file.exists()) {
@@ -301,7 +301,7 @@ public class Office2PdfUtil {
         return file.getAbsolutePath();
     }
 
-    public static String makeOffice2PdfDirectory() {
+    public String makeOffice2PdfDirectory() {
         log.info("开始创建-D:/office2PdfDirectory");
         File file = new File("D:/office2PdfDirectory");
         if (!file.exists()) {
@@ -311,7 +311,7 @@ public class Office2PdfUtil {
         return file.getAbsolutePath();
     }
 
-    public static void makeOffice2Pdf() {
+    public void makeOffice2Pdf() {
         List<String> fileNameList = new ArrayList<String>();
         File file = new File(makeOfficeDirectory());
         List<String> fileList = getAllFiles(file, fileNameList);
@@ -326,7 +326,7 @@ public class Office2PdfUtil {
         }
     }
 
-    public static List getAllFiles(File file, List<String> fileNameList) {
+    public List getAllFiles(File file, List<String> fileNameList) {
         File[] files = file.listFiles();
         if (files.length <= 0) {
             throw new RuntimeException("文件夹下不存在文件，请核实！！！");
@@ -342,6 +342,6 @@ public class Office2PdfUtil {
     }
 
     public static void main(String[] args) throws IOException {
-        makeOffice2Pdf();
+        //makeOffice2Pdf();
     }
 }

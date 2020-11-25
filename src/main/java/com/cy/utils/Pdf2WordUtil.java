@@ -27,7 +27,7 @@ public class Pdf2WordUtil {
 
     static final Logger log = Logger.getLogger(Pdf2WordUtil.class);
 
-    private static void pdf2Word(String filePath){
+    private void pdf2Word(String filePath){
         log.info("开始处理"+filePath);
         try {
             File file = new File(filePath);
@@ -121,7 +121,7 @@ public class Pdf2WordUtil {
         }
     }
 
-    public static String makePdfDirectory(){
+    public String makePdfDirectory(){
         File file = new File("D:/pdfDirectory");
         if(!file.exists()){
             file.mkdirs();
@@ -130,7 +130,7 @@ public class Pdf2WordUtil {
         return file.getAbsolutePath();
     }
 
-    public static String makePdf2WordDirectory(){
+    public String makePdf2WordDirectory(){
         File file = new File("D:/pdf2WordDirectory");
         if(!file.exists()){
             file.mkdirs();
@@ -139,16 +139,31 @@ public class Pdf2WordUtil {
         return file.getAbsolutePath();
     }
 
-    public static void makePdf2Word(){
+    public void makePdf2Word(){
         List<String> fileNameList = new ArrayList<String>();
         File file = new File(makePdfDirectory());
-        List<String> fileList = Office2PdfUtil.getAllFiles(file, fileNameList);
+        List<String> fileList = getAllFiles(file, fileNameList);
         for (String fileStr : fileList) {
             pdf2Word(fileStr);
         }
     }
 
+    public List getAllFiles(File file, List<String> fileNameList) {
+        File[] files = file.listFiles();
+        if (files.length <= 0) {
+            throw new RuntimeException("文件夹下不存在文件，请核实！！！");
+        }
+        for (File f : files) {
+            if (f.isFile()) {
+                fileNameList.add(f.getAbsolutePath());
+            } else {
+                getAllFiles(f, fileNameList);
+            }
+        }
+        return fileNameList;
+    }
+    
     public static void main(String[] args) {
-        makePdf2Word();
+        //makePdf2Word();
     }
 }
