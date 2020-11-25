@@ -19,8 +19,9 @@ public class Image2PdfUtils {
     static final Logger log = Logger.getLogger(Image2PdfUtils.class);
 
     public void convertImage2Pdf(String filePath) {
-        String target = makeImageDirectory() + "\\" +filePath;
-        String source = makeImage2PdfDirectory() + "\\" + filePath.substring(0,filePath.lastIndexOf("."))+".pdf";
+        String source = filePath;
+        String target = makeImage2PdfDirectory() + "\\" + filePath.substring(filePath.lastIndexOf("\\")+1,filePath.lastIndexOf("."))+".pdf";
+        log.info("来源文件夹："+source+";目标文件夹："+target);
         Document document = new Document();
         //设置文档页边距
         document.setMargins(0,0,0,0);
